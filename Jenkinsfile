@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Email Notification') {
             steps {
-                mail bcc: '', body: 'Hi , from Jenkins...', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'guneycancansanli@gmail.com'
+                mail bcc: '', body: 'Hi , from Jenkins...', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'guneycansanli@gmail.com'
             }
         }
     }
