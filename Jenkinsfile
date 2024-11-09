@@ -35,5 +35,8 @@ pipeline {
                 '''
             }
         }
+        stage('Email Notification') {
+            mail bcc: '', body: 'Hi , from Jekins...', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'guneycancansanli@gmail.com'
+        }
     }
 }
