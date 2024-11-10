@@ -35,10 +35,28 @@ pipeline {
                 '''
             }
         }
-        stage('Email Notification') {
-            steps {
-                mail bcc: '', body: 'Hi , from Jenkins...', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'guneycansanli@gmail.com'
+        // stage('Email Notification') {
+        //     steps {
+        //         mail bcc: '', body: 'Hi , from Jenkins...', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'guneycansanli@gmail.com'
+        //     }
+        // }
+    }
+         post {
+            always {
+                emailext (
+                    subject: "Pipeline Status: ${BUILD_NUMBER}",
+                    body: '''<html>
+                                <body>
+                                    <p>Build Status: ${BUILD_STATUS}</p>
+                                    <p>Build Number: ${BUILD_NUMBER}</p>
+                                    <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
+                                </body>
+                            </html>''',
+                    to: 'guneycansanli@gmail.com',
+                    from: 'jenkins@example.com',
+                    replyTo: 'jenkins@example.com',
+                    mimeType: 'text/html'
+                )
             }
         }
-    }
 }
